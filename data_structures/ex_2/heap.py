@@ -1,5 +1,12 @@
 def heapsort(arr):
-  pass
+  n = len(arr)
+
+  for i in range(n, -1, -1):
+    _max_child(arr, n, i)
+
+  for i in range(n - 1, 0, -1):
+    arr[i], arr[0] = arr[0], arr[i]
+    _max_child(arr, i, 0)
 
 class Heap:
   def __init__(self):
