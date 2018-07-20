@@ -5,30 +5,66 @@ class BinarySearchTree:
     self.right = None
 
   def depth_first_for_each(self, cb):
-    hasleft = self.left is not None
-    hasright = self.right is not None
+    # hasleft = self.left is not None
+    # hasright = self.right is not None
 
-    cb(self.value)    
-    if hasleft:
+    # cb(self.value)    
+    # if hasleft:
+    #   self.left.depth_first_for_each(cb)
+    # if hasright:
+    #   self.right.depth_first_for_each(cb)
+    # return
+
+    # Recursive 
+    # call the cb on the current BST node
+    cb(self.value)
+    if self.left:
       self.left.depth_first_for_each(cb)
-    if hasright:
+    if self.right:
       self.right.depth_first_for_each(cb)
-    return
+    
+    # Iterative
+    # stack = []
+    # #append the root node of our BST
+    # stack.append(self)
+    # # iterate throught the elements in the stack
+    # while len(stack):
+    #   # pop off the top-most stack element
+    #   current_node = stack.pop()
+    #   # check to see if this node has a right child
+    #   if current_node.right:
+    #     stack.append(current_node.left)
+    #   # check to see if this node has a left child
+    #   if current_node.left:
+    #     stack.append(current_node.left)      
+    #   # dont't forget to call the callback
+    #   cb(current_node.value)
+
 
 
   def breadth_first_for_each(self, cb):    
-    nodes = [self]
+    # nodes = [self]
 
-    while len(nodes) > 0:
-      current = nodes.pop(0)
-      currentleft = current.left is not None
-      currentright = current.right is not None
+    # while len(nodes) > 0:
+    #   current = nodes.pop(0)
+    #   currentleft = current.left is not None
+    #   currentright = current.right is not None
 
-      cb(current.value)
-      if currentleft:
-        nodes.append(current.left)
-      if currentright:
-        nodes.append(current.right)
+    #   cb(current.value)
+    #   if currentleft:
+    #     nodes.append(current.left)
+    #   if currentright:
+    #     nodes.append(current.right)
+
+    q = []
+    q.append(self)
+    while len(q):
+      current_node = q.pop(0)
+      if current_node.left:
+        q.append(current_node.left)
+      if current_node.right:
+        q.append(current_node.right)
+      cb(current_node.value)
     
 
   def insert(self, value):
