@@ -1,57 +1,21 @@
-# def heapify(arr, n, i):
-#   largest = i  #root 
-#   left = 2 * i + 1
-#   right = 2 * i + 2
-
-#   if left < n and arr[i] < arr[left]:
-#     largest = left
-  
-#   if right < n and arr[largest] < arr[right]:
-#     largest = right
-
-#   if largest != i:
-#     arr[i], arr[largest] = arr[largest], arr[i] #swap
-
-#     heapify(arr, n, largest)
-
 def heapsort(arr):
-  # initialize our heap
-  heap = Heap()
-  sorted = []
+  heap = Heap() # initialize our heap
+  sorted = [0] * len(arr) # initialize an array called sorted to have length equal to our input array
+  # sorted = [] # initialize an array called sorted 
 
-  for el in arr:
-    heap.insert(el)
+  for el in arr:  # go through each element in the array
+    heap.insert(el) # add them to the heap
   
-  while heap.get_size() > 0:
-    sorted.append(heap.delete())  
+  # for loop to iterate over elements in range for the array
+  for i in range(len(arr)): 
+    sorted[len(arr) - i - 1] = heap.delete()  
   
-  sorted.reverse()
+  # while heap.get_size() > 0:  # while loop; if greater than zero
+  #   sorted.append(heap.delete())  # append and delete   
+  
+  # sorted.reverse()  # to sort array in descending order
 
-  return sorted
-
-
-  # heap = Heap()
-  # # initialize our sorted array to have length equal to our input array
-  # sorted = [0] * len(arr)
-
-  # for el in arr:
-  #   heap.insert(el)
-
-  # for i in range (len(arr)):
-  #   sorted[len(arr) - i - 1] = heap.delete()
-
-  # return sorted
-
-
-  # n = len(arr)
-
-  # for i in range(n, -1, -1):
-  #   heapify(arr, n, i)
-
-  # for i in range(n - 1, 0, -1):
-  #   arr[i], arr[0] = arr[0], arr[i] #swap
-  #   heapify(arr, i, 0)
-
+  return sorted # return sorted
 
 class Heap:
   def __init__(self):
@@ -61,7 +25,7 @@ class Heap:
   def insert(self, value):
     self.storage.append(value)
     self.size += 1
-    self._bubble_up(self.size)
+    self._bubble_up(self.size) 
 
   def delete(self):
     retval = self.storage[1]

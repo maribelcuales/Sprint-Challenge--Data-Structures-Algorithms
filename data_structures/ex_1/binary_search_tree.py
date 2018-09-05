@@ -18,12 +18,12 @@ class BinarySearchTree:
     # Recursive 
     # call the cb on the current BST node
     cb(self.value)
-    if self.left:
-      self.left.depth_first_for_each(cb)
+    if self.left: # left most branch 
+      self.left.depth_first_for_each(cb)  # if there's a left node/child, will execute the cb; once all the left nodes are exhausted, then proceed to check the right     
     if self.right:
-      self.right.depth_first_for_each(cb)
+      self.right.depth_first_for_each(cb) # if there's a right node/child, will execute the cb
     
-    # Iterative
+    # # Iterative
     # stack = []
     # #append the root node of our BST
     # stack.append(self)
@@ -37,9 +37,8 @@ class BinarySearchTree:
     #   # check to see if this node has a left child
     #   if current_node.left:
     #     stack.append(current_node.left)      
-    #   # dont't forget to call the callback
+    #   # call the callback
     #   cb(current_node.value)
-
 
 
   def breadth_first_for_each(self, cb):    
@@ -59,7 +58,7 @@ class BinarySearchTree:
     q = []
     q.append(self)
     while len(q):
-      current_node = q.pop(0)
+      current_node = q.pop(0) # pop from beginning; FIFO ordering; the first one added gets popped first
       if current_node.left:
         q.append(current_node.left)
       if current_node.right:
